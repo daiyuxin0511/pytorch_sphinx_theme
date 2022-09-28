@@ -1,40 +1,105 @@
-{%- set external_urls = {
-  'github': 'https://github.com/pytorch/pytorch',
-  'github_issues': 'https://github.com/pytorch/pytorch/issues',
-  'contributing': 'https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md',
-  'docs': 'https://pytorch.org/docs/stable/index.html',
-  'twitter': 'https://twitter.com/pytorch',
-  'spotify': 'https://open.spotify.com/show/6UzHKeiy368jKfQMKKvJY5',
-  'apple': 'https://podcasts.apple.com/us/podcast/pytorch-developer-podcast/id1566080008',
-  'google': 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkcy5zaW1wbGVjYXN0LmNvbS9PQjVGa0lsOA%3D%3D',
-  'amazon': 'https://music.amazon.com/podcasts/7a4e6f0e-26c2-49e9-a478-41bd244197d0/PyTorch-Developer-Podcast?',
-  'linkedIn': 'https://www.linkedin.com/company/pytorch',
-  'facebook': 'https://www.facebook.com/pytorch',
-  'slack': 'https://pytorch.slack.com',
-  'discuss': 'https://discuss.pytorch.org',
-  'tutorials': 'https://pytorch.org/tutorials',
-  'previous_pytorch_versions': 'https://pytorch.org/previous-versions/',
-  'home': 'https://pytorch.org/',
-  'get_started': 'https://pytorch.org/get-started',
-  'features': 'https://pytorch.org/features',
-  'ecosystem': 'https://pytorch.org/ecosystem',
-  'blog': 'https://pytorch.org/blog/',
-  'resources': 'https://pytorch.org/resources',
-  'support': 'https://pytorch.org/support',
-  'mobile': 'https://pytorch.org/mobile',
-  'hub': 'https://pytorch.org/hub',
-  'youtube': 'https://www.youtube.com/pytorch',
-  'brand_guidelines': 'https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf',
-  'community': 'https://pytorch.org/#community-module',
-  'forums': 'https://discuss.pytorch.org/',
-  'audio': 'https://pytorch.org/audio/stable/index.html',
-  'text': 'https://pytorch.org/text/stable/index.html',
-  'vision': 'https://pytorch.org/vision/stable/index.html',
-  'elastic': 'https://pytorch.org/elastic/',
-  'torchx': 'https://pytorch.org/torchx/',
-  'serve': 'https://pytorch.org/serve/',
-  'xla': 'https://pytorch.org/xla',
-  'data': 'https://pytorch.org/data',
-  'torchrec': 'https://pytorch.org/torchrec'
-}
+{%- set shared_menu_en = [
+        {
+            'name':
+            'Docs',
+            'children': [
+                {
+                    'name': 'mindcv-ai',
+                    'url': 'https://mindcv-ai.readthedocs.io/en/latest/',
+                },
+                {
+                    'name': 'mindnlp',
+                    'url': 'https://mindnlp.readthedocs.io/en/latest/',
+                },
+                {
+                    'name': 'mindface',
+                    'url': 'https://mindface.readthedocs.io/en/latest/',
+                },
+                {
+                    'name': 'mindaudio',
+                    'url': 'https://mindaudio.readthedocs.io/en/latest/',
+                },
+            ]
+        },
+        {
+            'name':
+            'mindlab-ai',
+            'children': [
+                {
+                    'name': 'Homepage',
+                    'url': '#'
+                },
+                {
+                    'name': 'Open Platform',
+                    'url': '#'
+                },
+                {
+                    'name': 'GitHub',
+                    'url': 'https://github.com/mindlab-ai/'
+                },
+                {
+                    'name': 'Twitter',
+                    'url': '#'
+                },
+                {
+                    'name': 'Zhihu',
+                    'url': '#'
+                },
+            ]
+        },
+    ]
 -%}
+
+{%- set shared_menu_cn = [
+        {
+            'name':
+            '文档',
+            'children': [
+                {
+                    'name': 'mindcv',
+                    'url': 'https://mindcv-ai.readthedocs.io/zh_CN/latest/',
+                },
+                {
+                    'name': 'mindnlp',
+                    'url': 'https://mindnlp.readthedocs.io/zh_CN/latest/',
+                },
+                {
+                    'name': 'mindface',
+                    'url': 'https://mindface.readthedocs.io/zh_CN/latest/',
+                },
+                {
+                    'name': 'mindaudio',
+                    'url': 'https://mindaudio.readthedocs.io/zh_CN/latest/',
+                },
+            ]
+        },
+        {
+            'name':
+            'mindlab-ai',
+            'children': [
+                {
+                    'name': '官网',
+                    'url': '#'
+                },
+                {
+                    'name': '开放平台',
+                    'url': '#'
+                },
+                {
+                    'name': 'GitHub',
+                    'url': 'https://github.com/mindlab-ai/'
+                },
+                {
+                    'name': '推特',
+                    'url': '#'
+                },
+                {
+                    'name': '知乎',
+                    'url': '#'
+                },
+            ]
+        },
+    ]
+-%}
+
+{%- set lang_menu_mapping = {'default': shared_menu_en, 'cn': shared_menu_cn, 'en': shared_menu_en} -%}

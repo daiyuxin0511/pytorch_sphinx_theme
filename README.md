@@ -1,3 +1,92 @@
+# Introduction
+This theme is adapted from PyTorch Sphinx Theme, with more configurations allowed.
+
+## Getting Started
+Add dependencies to `requirements.txt`,
+```
+-e git+https://github.com/mindlab-ai/pytorch_sphinx_theme.git#egg=pytorch_sphinx_theme
+sphinx_copybutton
+```
+In `docs/conf.py`:
+```python
+import pytorch_sphinx_theme
+
+html_theme = 'pytorch_sphinx_theme'
+html_theme_path = [pytorch_sphinx_theme.get_html_theme_path()]
+
+# Ignore >>> when copying code
+copybutton_prompt_text = r'>>> |\.\.\. '
+copybutton_prompt_is_regexp = True
+```
+
+### Header Logo
+The header logo is mindlab-ai by default. Each repo should customize the logo by overriding the provided css class.
+
+We suggest putting all the html resources to `docs/_static`. First put the logo
+to `docs/_static/images/logo.png`, then write the following snippet to 
+`docs/_static/css/readthedocs.css`:
+```css
+.header-logo {
+    background-image: url("../images/logo.png");
+    background-size: 110px 40px;
+    height: 40px;
+    width: 110px;
+}
+```
+Here, you are recommended to fix the height to `40px` and scale the width according to the logo's aspect ratio.
+The latest thing to do is to tell Sphinx the location of these resources by adding the following lines to `docs/conf.py`:
+```python
+html_static_path = ['_static']
+html_css_files = ['css/readthedocs.css']
+```
+
+### Header Customization
+This theme variant also allows users to customize the header, such as the logo url and the navigation menu, in a pythonic way. They are all configurable options in `html_theme_options` in `docs/conf.py`.
+
+Here is an example config covering all available options:
+```python
+html_theme_options = {
+    # The target url that the logo directs to. Unset to do nothing
+    'logo_url': 'https://mindcv-ai.readthedocs.io/en/latest/',
+    # "menu" is a list of dictionaries where you can specify the content and the 
+    # behavior of each item in the menu. Each item can either be a link or a
+    # dropdown menu containing a list of links.
+    'menu': [
+        # A link
+        {
+            'name': 'GitHub',
+            'url': 'https://github.com/mindlab-ai/'
+        }, 
+        # A dropdown menu
+        {
+            'name': 'Projects',
+            'children': [
+                # A vanilla dropdown item
+                {
+                    'name': 'mindcv',
+                    'url': 'https://github.com/mindlab-ai/mmcv',
+                },
+                # A dropdown item with a description
+                {
+                    'name': 'mindnlp',
+                    'url': 'https://github.com/mindlab-ai/mindnlp',
+                    'description': '...'
+                },
+            ], 
+            # Optional, determining whether this dropdown menu will always be
+            # highlighted. 
+            'active': True,
+        },
+    ],
+    # For shared menu: If your project is a part of mindlab-ai's project and 
+    # you would like to append Docs and mindlab-ai section to the right
+    # of the menu, you can specify menu_lang to choose the language of
+    # shared contents. Available options are 'en' and 'cn'. Any other
+    # strings will fall back to 'en'.
+    'menu_lang':
+    'en',
+}
+```
 # PyTorch Sphinx Theme
 
 Sphinx theme for [PyTorch Docs](https://pytorch.org/docs/master/torch.html) and [PyTorch Tutorials](https://pytorch.org/tutorials) based on the [Read the Docs Sphinx Theme](https://sphinx-rtd-theme.readthedocs.io/en/latest).
@@ -7,8 +96,7 @@ Sphinx theme for [PyTorch Docs](https://pytorch.org/docs/master/torch.html) and 
 Run python setup:
 
 ```
-git clone https://github.com/pytorch/pytorch_sphinx_theme
-pip install -e pytorch_sphinx_theme
+python setup.py install
 ```
 
 and install the dependencies using `pip install -r docs/requirements.txt`
@@ -18,6 +106,7 @@ In the root directory install the `package.json`:
 ```
 # node version 8.4.0
 yarn install
+
 ```
 
 If you have `npm` installed then run:
@@ -71,12 +160,11 @@ When you are ready to submit a PR with your changes you can first test that your
 
 1. Run the `grunt build` task on your branch and commit the build to Github.
 2. In your local docs or tutorials repo, remove any existing `pytorch_sphinx_theme` packages in the `src` folder (there should be a `pip-delete-this-directory.txt` file there)
-3. Clone the repo locally `git clone https://github.com/pytorch/pytorch_sphinx_theme`
-4. Install `pytorch_sphinx_theme` by running `pip install -e pytorch_sphinx_theme`
-5. Install the requirements `pip install -r requirements.txt`
-6. Remove the current build. In the docs this is `make clean`, tutorials is `make clean-cache`
-7. Build the static site. In the docs this is `make html`, tutorials is `make html-noplot`
-8. Open the site and look around. In the docs open `docs/build/html/index.html`, in the tutorials open `_build/html.index.html`
+3. In `requirements.txt` replace the existing git link with a link pointing to your commit or branch, e.g. `-e git+git://github.com/{ your repo }/pytorch_sphinx_theme.git@{ your commit hash }#egg=pytorch_sphinx_theme`
+4. Install the requirements `pip install -r requirements.txt`
+5. Remove the current build. In the docs this is `make clean`, tutorials is `make clean-cache`
+6. Build the static site. In the docs this is `make html`, tutorials is `make html-noplot`
+7. Open the site and look around. In the docs open `docs/build/html/index.html`, in the tutorials open `_build/html.index.html`
 
 If your changes have been applied successfully, remove the build commit from your branch and submit your PR.
 
